@@ -6,9 +6,16 @@ import pandas as pd
 from datetime import datetime, timedelta
 from funs import get_prices
 
+st.set_page_config(
+    page_title = "Fruit & Vegetable Prices at Izmir Wholesale Market",
+    layout = "wide"
+)
+
 st.title("Fruit & Vegetable Prices at Izmir Wholesale Market")
 
-st.session_state['cur_date'] = st.date_input("Choose Date",value=datetime.today() - timedelta(days=1),max_value=datetime.today() - timedelta(days=1))
+col1, col2 = st.beta_columns([2,11])
+
+st.session_state['cur_date'] = col1.date_input("Choose Date",value=datetime.today() - timedelta(days=1),max_value=datetime.today() - timedelta(days=1))
 
 price_df = get_prices(str(st.session_state['cur_date']))
 
